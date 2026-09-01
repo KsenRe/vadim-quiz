@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday — Вадим!</title>
+
+
+<style>
+
+/* =====================================================
+   ОСНОВНОЕ
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #ffcc70 0%,
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 30%,
+            #ff70a6 0%,
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #5420a8,
+            #d62f7d,
+            #ff8a3d
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   КОНТЕЙНЕР
+===================================================== */
+
+.quiz-container {
+
+    width: 92%;
+
+    max-width: 1000px;
+
+    min-height: 650px;
+
+    padding: 40px;
+
+    background:
+        rgba(25, 10, 50, 0.94);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.4);
+
+    text-align: center;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   СКРЫТЫЕ ЭКРАНЫ
+===================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   ЗАГОЛОВКИ
+===================================================== */
+
+h1 {
+
+    font-size: 60px;
+
+    margin: 10px 0 20px;
+}
+
+
+h2 {
+
+    font-size: 34px;
+
+    margin: 25px 0 35px;
+}
+
+
+/* =====================================================
+   ТЕКСТ
+===================================================== */
+
+.subtitle {
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   БЕЙДЖ
+===================================================== */
+
+.badge {
+
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    background: #ffd43b;
+
+    color: #42145f;
+
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   КНОПКИ
+===================================================== */
+
+button {
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 16px 25px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+
+    transform: translateY(-2px);
+}
+
+
+.start-button {
+
+    margin-top: 25px;
+
+    background: #ffd43b;
+
+    color: #42145f;
+
+    font-size: 21px;
+
+    padding: 20px 40px;
+}
+
+
+.next-button {
+
+    background: #ffd43b;
+
+    color: #42145f;
+
+    margin-top: 15px;
+}
+
+
+.pause-button {
+
+    background:
+        rgba(255,255,255,0.15);
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   ВЕРХНЯЯ ПАНЕЛЬ
+===================================================== */
+
+.top-panel {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   ТАЙМЕР
+===================================================== */
+
+.timer {
+
+    width: 95px;
+
+    height: 95px;
+
+    border-radius: 50%;
+
+    background: #ffd43b;
+
+    color: #42145f;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 0 8px
+        rgba(255,212,59,0.15);
+}
+
+
+/* =====================================================
+   ПРОГРЕСС
+===================================================== */
+
+.progress {
+
+    height: 8px;
+
+    background:
+        rgba(255,255,255,0.15);
+
+    border-radius: 20px;
+
+    margin: 25px 0;
+}
+
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #ffd43b;
+
+    border-radius: 20px;
+
+    transition: width 0.3s;
+}
+
+
+/* =====================================================
+   ВАРИАНТЫ
+===================================================== */
+
+.answers {
+
+    width: 90%;
+
+    max-width: 750px;
+
+    margin: auto;
+}
+
+
+.answer {
+
+    width: 100%;
+
+    margin: 8px 0;
+
+    padding: 18px 22px;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.15);
+
+    color: white;
+
+    text-align: left;
+
+    border-radius: 15px;
+
+    cursor: default;
+
+    font-size: 18px;
+}
+
+
+/*
+    ВАЖНО:
+
+    Варианты НЕ нажимаются.
+*/
+
+.answer:hover {
+
+    transform: none;
+
+    background:
+        rgba(255,255,255,0.10);
+}
+
+
+/* =====================================================
+   СДАЁМ ОТВЕТЫ
+===================================================== */
+
+.submit-icon {
+
+    font-size: 80px;
+
+    margin-top: 50px;
+}
+
+
+.submit-title {
+
+    font-size: 52px;
+
+    font-weight: bold;
+
+    margin: 20px 0;
+}
+
+
+.submit-timer {
+
+    font-size: 90px;
+
+    color: #ffd43b;
+
+    font-weight: bold;
+
+    margin: 30px;
+}
+
+
+/* =====================================================
+   ПРАВИЛЬНЫЕ ОТВЕТЫ
+===================================================== */
+
+.correct-title {
+
+    font-size: 18px;
+
+    color: #ffd43b;
+
+    font-weight: bold;
+}
+
+
+.correct-answer {
+
+    font-size: 42px;
+
+    color: #4ade80;
+
+    font-weight: bold;
+
+    margin: 20px;
+}
+
+
+.review-question {
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    margin: 20px auto;
+
+    max-width: 850px;
+}
+
+
+/* =====================================================
+   ФОТО
+===================================================== */
+
+.photo-container {
+
+    width: 500px;
+
+    height: 280px;
+
+    max-width: 90%;
+
+    margin: 20px auto;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.photo-container img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.photo-placeholder {
+
+    font-size: 70px;
+
+    opacity: 0.7;
+}
+
+
+/* =====================================================
+   КОММЕНТАРИЙ
+===================================================== */
+
+.comment {
+
+    font-size: 19px;
+
+    font-style: italic;
+
+    opacity: 0.9;
+
+    max-width: 750px;
+
+    margin: 15px auto;
+}
+
+
+/* =====================================================
+   ПАУЗА
+===================================================== */
+
+.pause-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(20,5,35,0.97);
+
+    border-radius: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 100;
+}
+
+
+.pause-overlay h2 {
+
+    font-size: 55px;
+
+    margin: 15px;
+}
+
+
+.pause-overlay p {
+
+    font-size: 20px;
+
+    opacity: 0.8;
+}
+
+
+.resume-button {
+
+    background: #ffd43b;
+
+    color: #42145f;
+
+    font-size: 20px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   ФИНАЛ
+===================================================== */
+
+.final-icon {
+
+    font-size: 100px;
+
+    margin-top: 50px;
+}
+
+
+.final-title {
+
+    font-size: 48px;
+
+    color: #ffd43b;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="quiz-container">
+
+
+<!-- ===================================================
+     СТАРТ
+=================================================== -->
+
+<section id="start-screen">
+
+
+    <div style="font-size:80px;">
+        🎂
+    </div>
+
+
+    <div class="badge">
+
+        HAPPY BIRTHDAY
+
+    </div>
+
+
+    <h1>
+
+        ВАДИМ!
+
+    </h1>
+
+
+    <h2>
+
+        РАУНД 1 — КЛАССИКА
+
+    </h2>
+
+
+    <p class="subtitle">
+
+        8 вопросов<br>
+
+        15 секунд на каждый вопрос<br>
+
+        Записываем ответы на листочках ✍️<br>
+
+        Правильные ответы узнаем только после раунда!
+
+    </p>
+
+
+    <button
+        class="start-button"
+        onclick="startQuiz()">
+
+        НАЧАТЬ РАУНД →
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     ВОПРОС
+=================================================== -->
+
+<section
+    id="question-screen"
+    class="hidden">
+
+
+    <div class="top-panel">
+
+
+        <div
+            class="badge"
+            id="question-number">
+
+            ВОПРОС 1 / 8
+
+        </div>
+
+
+        <div
+            class="timer"
+            id="question-timer">
+
+            15
+
+        </div>
+
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            id="progress-bar">
+
+        </div>
+
+    </div>
+
+
+    <h2
+        id="question-text">
+
+    </h2>
+
+
+    <div
+        class="answers"
+        id="answers">
+
+    </div>
+
+
+    <p class="subtitle">
+
+        ✍️ Запоминай свой ответ!
+
+    </p>
+
+
+    <button
+        class="pause-button"
+        onclick="pauseGame()">
+
+        ⏸ ПАУЗА
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     СДАЁМ ОТВЕТЫ
+=================================================== -->
+
+<section
+    id="submit-screen"
+    class="hidden">
+
+
+    <div class="submit-icon">
+
+        📝
+
+    </div>
+
+
+    <div class="badge">
+
+        ВРЕМЯ!
+
+    </div>
+
+
+    <div class="submit-title">
+
+        СДАЁМ ОТВЕТЫ
+
+    </div>
+
+
+    <p class="subtitle">
+
+        Собираем листочки!<br>
+
+        У вас осталось:
+
+    </p>
+
+
+    <div
+        class="submit-timer"
+        id="submit-timer">
+
+        15
+
+    </div>
+
+
+    <button
+        class="pause-button"
+        onclick="pauseGame()">
+
+        ⏸ ПАУЗА
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     ПРОВЕРКА ОТВЕТОВ
+=================================================== -->
+
+<section
+    id="review-screen"
+    class="hidden">
+
+
+    <div class="correct-title">
+
+        ПРАВИЛЬНЫЙ ОТВЕТ
+
+    </div>
+
+
+    <div
+        class="review-question"
+        id="review-question">
+
+    </div>
+
+
+    <div
+        class="correct-answer"
+        id="correct-answer">
+
+    </div>
+
+
+    <div class="photo-container">
+
+
+        <img
+            id="answer-photo"
+            src=""
+            alt="Фото">
+
+
+        <div
+            class="photo-placeholder"
+            id="photo-placeholder">
+
+            📸
+
+        </div>
+
+
+    </div>
+
+
+    <div
+        class="comment"
+        id="answer-comment">
+
+    </div>
+
+
+    <button
+        class="next-button"
+        onclick="nextReview()">
+
+        СЛЕДУЮЩИЙ ОТВЕТ →
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     ФИНАЛ
+=================================================== -->
+
+<section
+    id="finish-screen"
+    class="hidden">
+
+
+    <div class="final-icon">
+
+        🏆
+
+    </div>
+
+
+    <div class="badge">
+
+        РАУНД 1
+
+    </div>
+
+
+    <div class="final-title">
+
+        ПРОВЕРКА ЗАВЕРШЕНА!
+
+    </div>
+
+
+    <p class="subtitle">
+
+        Все правильные ответы разобраны 🎉
+
+    </p>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     ПАУЗА
+=================================================== -->
+
+<div
+    id="pause-overlay"
+    class="pause-overlay hidden">
+
+
+    <div style="font-size:80px;">
+        ⏸️
+    </div>
+
+
+    <h2>
+
+        ПАУЗА
+
+    </h2>
+
+
+    <p>
+
+        Таймер остановлен
+
+    </p>
+
+
+    <button
+        class="resume-button"
+        onclick="resumeGame()">
+
+        ▶ ПРОДОЛЖИТЬ
+
+    </button>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   ⭐⭐⭐ ВОПРОСЫ РАУНДА ⭐⭐⭐
+
+   ЗДЕСЬ МЫ ПОТОМ БУДЕМ РЕДАКТИРОВАТЬ ВОПРОСЫ.
+
+===================================================== */
+
+
+const questions = [
+
+
+    {
+        question:
+        "Как хотели назвать Вадима при рождении?",
+
+        answers: [
+            "А) Степа",
+            "Б) Максим",
+            "В) Георгий",
+            "Г) Захар"
+        ],
+
+        correct:
+        "В) Георгий",
+
+        photo:
+        "photos/q1.jpg",
+
+        comment:
+        "А ведь мог бы сейчас быть Георгием..."
+    },
+
+
+    {
+        question:
+        "Какая собака была у Вадима в детстве?",
+
+        answers: [
+            "А) Немецкая овчарка",
+            "Б) Алабай",
+            "В) Ротвейлер",
+            "Г) Лабрадор"
+        ],
+
+        correct:
+        "Б) Алабай",
+
+        photo:
+        "photos/q2.jpg",
+
+        comment:
+        "Вот это уже серьёзная собака."
+    },
+
+
+    {
+        question:
+        "О какой собаке мечтал Вадим?",
+
+        answers: [
+            "А) Хаски",
+            "Б) Корги",
+            "В) Доберман",
+            "Г) Мопс"
+        ],
+
+        correct:"Г) Мопс",
+
+        photo:
+        "photos/q3.jpg",
+
+        comment:
+        "Мопсы - это круто"
+    },
+
+
+    {
+        question:
+        "Какой наряд был у Вадима в детском саду?",
+
+        answers: [
+            "А) Мушкетер",
+            "Б) Пират",
+            "В) Мухомор",
+            "Г) Петрушка"
+        ],
+
+        correct:
+        null,
+
+        photo:
+        "photos/q4.jpg",
+
+        comment:
+        "Фото с детского утренника сюда просто просится."
+    },
+
+
+    {
+        question:
+        "Книги какого автора мама читала Вадиму на ночь?",
+
+        answers: [
+            "А) Стивен Кинг",
+            "Б) Джоан Роулинг",
+            "В) Агата Кристи",
+            "Г) Георгий Остер"
+        ],
+
+        correct:
+        "А) Стивен Кинг",
+
+        photo:
+        "photos/q5.jpg",
+
+        comment:
+        "Очень спокойное чтение перед сном 😭"
+    },
+
+
+    {
+        question:
+        "На какую секцию ходил Вадим?",
+
+        answers: [
+            "А) Футбол",
+            "Б) Карате",
+            "В) Аккордеон",
+            "Г) Стрельба из лука"
+        ],
+
+        correct:
+        null,
+
+        photo:
+        "photos/q6.jpg",
+
+        comment:
+        "Вот здесь интересно узнать, кто что написал."
+    },
+
+
+    {
+        question:
+        "На каком радио транслировался Вадим?",
+
+        answers: [
+            "А) Радио Рекорд",
+            "Б) Радио Маяк",
+            "В) Радио Маруся",
+            "Г) Европа Плюс"
+        ],
+
+        correct:
+        "В) Радио Маруся",
+
+        photo:
+        "photos/q7.jpg",
+
+        comment:
+        "Да, Вадим однажды оказался и на радио."
+    },
+
+
+    {
+        question:
+        "В каком фильме снимался Вадим?",
+
+        answers: [
+            "А) Кислота",
+            "Б) Горько!",
+            "В) Полицейский с Рублёвки",
+            "Г) На Париж"
+        ],
+
+        correct:
+        null,
+
+        photo:
+        "photos/q8.jpg",
+
+        comment:
+        "А вот тут уже можно устроить настоящую проверку памяти."
+    }
+
+];
+
+
+
+/* =====================================================
+   СОСТОЯНИЕ
+===================================================== */
+
+let currentQuestion = 0;
+
+let currentReview = 0;
+
+let timer = 15;
+
+let timerInterval = null;
+
+let paused = false;
+
+let currentPhase = "question";
+
+
+
+/* =====================================================
+   НАСТРОЙКИ
+===================================================== */
+
+const QUESTION_TIME = 15;
+
+const SUBMIT_TIME = 15;
+
+
+
+/* =====================================================
+   ЗАПУСК
+===================================================== */
+
+function startQuiz() {
+
+    currentQuestion = 0;
+
+    showQuestion();
+
+}
+
+
+
+/* =====================================================
+   ПОКАЗ ВОПРОСА
+===================================================== */
+
+function showQuestion() {
+
+
+    clearTimer();
+
+
+    currentPhase =
+        "question";
+
+
+    hideAllScreens();
+
+
+    document
+        .getElementById("question-screen")
+        .classList
+        .remove("hidden");
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("question-number")
+        .textContent =
+
+        `ВОПРОС ${
+            currentQuestion + 1
+        } / ${
+            questions.length
+        }`;
+
+
+    document
+        .getElementById("question-text")
+        .textContent =
+
+        question.question;
+
+
+    const progress =
+        (
+            currentQuestion /
+            questions.length
+        ) * 100;
+
+
+    document
+        .getElementById("progress-bar")
+        .style
+        .width =
+
+        progress + "%";
+
+
+    const answers =
+        document
+        .getElementById("answers");
+
+
+    answers.innerHTML = "";
+
+
+    question.answers.forEach(
+
+        function(answer) {
+
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "answer";
+
+
+            element.textContent =
+                answer;
+
+
+            answers.appendChild(
+                element
+            );
+
+        }
+
+    );
+
+
+    startTimer(
+
+        "question-timer",
+
+        QUESTION_TIME,
+
+        questionFinished
+
+    );
+
+}
+
+
+
+/* =====================================================
+   ЗАВЕРШЕНИЕ ОДНОГО ВОПРОСА
+===================================================== */
+
+function questionFinished() {
+
+
+    clearTimer();
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion <
+        questions.length
+    ) {
+
+
+        showQuestion();
+
+
+    }
+
+    else {
+
+
+        showSubmitScreen();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   СДАЁМ ОТВЕТЫ
+===================================================== */
+
+function showSubmitScreen() {
+
+
+    clearTimer();
+
+
+    currentPhase =
+        "submit";
+
+
+    hideAllScreens();
+
+
+    document
+        .getElementById("submit-screen")
+        .classList
+        .remove("hidden");
+
+
+    startTimer(
+
+        "submit-timer",
+
+        SUBMIT_TIME,
+
+        startReview
+
+    );
+
+}
+
+
+
+/* =====================================================
+   НАЧАЛО ПРОВЕРКИ
+===================================================== */
+
+function startReview() {
+
+
+    clearTimer();
+
+
+    currentReview = 0;
+
+
+    showReview();
+
+}
+
+
+
+/* =====================================================
+   ПОКАЗ ПРАВИЛЬНОГО ОТВЕТА
+===================================================== */
+
+function showReview() {
+
+
+    clearTimer();
+
+
+    currentPhase =
+        "review";
+
+
+    hideAllScreens();
+
+
+    document
+        .getElementById("review-screen")
+        .classList
+        .remove("hidden");
+
+
+    const question =
+        questions[currentReview];
+
+
+    document
+        .getElementById("review-question")
+        .textContent =
+
+        question.question;
+
+
+    const correctElement =
+        document
+        .getElementById("correct-answer");
+
+
+    if (
+        question.correct
+    ) {
+
+
+        correctElement.textContent =
+            "✓ " +
+            question.correct;
+
+    }
+
+    else {
+
+
+        correctElement.textContent =
+            "⚠ ПРАВИЛЬНЫЙ ОТВЕТ ЕЩЁ НЕ УКАЗАН";
+
+    }
+
+
+    document
+        .getElementById("answer-comment")
+        .textContent =
+
+        question.comment;
+
+
+    const photo =
+        document
+        .getElementById("answer-photo");
+
+
+    const placeholder =
+        document
+        .getElementById("photo-placeholder");
+
+
+    photo.src =
+        question.photo;
+
+
+    photo.style.display =
+        "block";
+
+
+    placeholder.style.display =
+        "none";
+
+
+    photo.onerror =
+        function() {
+
+            photo.style.display =
+                "none";
+
+            placeholder.style.display =
+                "block";
+
+        };
+
+}
+
+
+
+/* =====================================================
+   СЛЕДУЮЩИЙ ПРАВИЛЬНЫЙ ОТВЕТ
+===================================================== */
+
+function nextReview() {
+
+
+    currentReview++;
+
+
+    if (
+        currentReview <
+        questions.length
+    ) {
+
+
+        showReview();
+
+
+    }
+
+    else {
+
+
+        showFinish();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   ФИНАЛ
+===================================================== */
+
+function showFinish() {
+
+
+    clearTimer();
+
+
+    currentPhase =
+        "finish";
+
+
+    hideAllScreens();
+
+
+    document
+        .getElementById("finish-screen")
+        .classList
+        .remove("hidden");
+
+}
+
+
+
+/* =====================================================
+   ТАЙМЕР
+===================================================== */
+
+function startTimer(
+    elementId,
+    seconds,
+    callback
+) {
+
+
+    clearTimer();
+
+
+    timer =
+        seconds;
+
+
+    paused =
+        false;
+
+
+    const element =
+        document
+        .getElementById(elementId);
+
+
+    element.textContent =
+        timer;
+
+
+    timerInterval =
+        setInterval(
+
+            function() {
+
+
+                if (
+                    paused
+                ) {
+
+                    return;
+
+                }
+
+
+                timer--;
+
+
+                element.textContent =
+                    timer;
+
+
+                if (
+                    timer <= 0
+                ) {
+
+
+                    clearTimer();
+
+
+                    callback();
+
+                }
+
+
+            },
+
+            1000
+
+        );
+
+}
+
+
+
+/* =====================================================
+   ПАУЗА
+===================================================== */
+
+function pauseGame() {
+
+
+    if (
+        currentPhase !== "question" &&
+        currentPhase !== "submit"
+    ) {
+
+        return;
+
+    }
+
+
+    paused =
+        true;
+
+
+    document
+        .getElementById("pause-overlay")
+        .classList
+        .remove("hidden");
+
+}
+
+
+
+/* =====================================================
+   ПРОДОЛЖИТЬ
+===================================================== */
+
+function resumeGame() {
+
+
+    paused =
+        false;
+
+
+    document
+        .getElementById("pause-overlay")
+        .classList
+        .add("hidden");
+
+}
+
+
+
+/* =====================================================
+   ОСТАНОВКА ТАЙМЕРА
+===================================================== */
+
+function clearTimer() {
+
+
+    if (
+        timerInterval !== null
+    ) {
+
+
+        clearInterval(
+            timerInterval
+        );
+
+
+        timerInterval =
+            null;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   СКРЫТЬ ЭКРАНЫ
+===================================================== */
+
+function hideAllScreens() {
+
+
+    document
+        .getElementById("start-screen")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("question-screen")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("submit-screen")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("review-screen")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("finish-screen")
+        .classList
+        .add("hidden");
+
+}
+
+
+
+/* =====================================================
+   SPACE = ПАУЗА
+===================================================== */
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+
+        if (
+            event.code === "Space"
+        ) {
+
+
+            event.preventDefault();
+
+
+            if (
+                currentPhase === "question" ||
+                currentPhase === "submit"
+            ) {
+
+
+                if (paused) {
+
+                    resumeGame();
+
+                }
+
+                else {
+
+                    pauseGame();
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
