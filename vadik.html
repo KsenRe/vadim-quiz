@@ -6,606 +6,1222 @@
 <title>HAPPY BIRTHDAY ВАДИМ! 🎉</title>
 
 <style>
-    * {
-        box-sizing: border-box;
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.15), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(255,180,220,.18), transparent 25%),
+        linear-gradient(135deg, #5b2a86, #9b3f91 45%, #ff7b54);
+
+    position: relative;
+}
+
+/* =========================
+   ПРАЗДНИЧНЫЙ ФОН
+========================= */
+
+.party-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 55px;
+    animation: balloonFloat 5s ease-in-out infinite;
+    opacity: .9;
+}
+
+.balloon:nth-child(1) {
+    left: 3%;
+    top: 12%;
+}
+
+.balloon:nth-child(2) {
+    right: 4%;
+    top: 18%;
+    animation-delay: 1.5s;
+}
+
+.balloon:nth-child(3) {
+    left: 8%;
+    bottom: 12%;
+    animation-delay: 2.5s;
+}
+
+.balloon:nth-child(4) {
+    right: 8%;
+    bottom: 15%;
+    animation-delay: 3.5s;
+}
+
+.balloon:nth-child(5) {
+    left: 45%;
+    top: 2%;
+    font-size: 40px;
+    animation-delay: .7s;
+}
+
+@keyframes balloonFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-4deg);
     }
 
-    html, body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-        font-family: Arial, Helvetica, sans-serif;
+    50% {
+        transform: translateY(-25px) rotate(5deg);
+    }
+}
+
+.party-item {
+    position: absolute;
+    font-size: 35px;
+    animation: partyMove 7s linear infinite;
+    opacity: .75;
+}
+
+.party-item:nth-child(6) {
+    left: 15%;
+    top: 4%;
+}
+
+.party-item:nth-child(7) {
+    right: 15%;
+    top: 7%;
+    animation-delay: 2s;
+}
+
+.party-item:nth-child(8) {
+    left: 2%;
+    top: 50%;
+    animation-delay: 4s;
+}
+
+.party-item:nth-child(9) {
+    right: 3%;
+    top: 55%;
+    animation-delay: 1s;
+}
+
+.party-item:nth-child(10) {
+    left: 30%;
+    bottom: 3%;
+    animation-delay: 3s;
+}
+
+.party-item:nth-child(11) {
+    right: 30%;
+    bottom: 5%;
+    animation-delay: 5s;
+}
+
+@keyframes partyMove {
+    0% {
+        transform: translateY(20px) rotate(0deg);
     }
 
-    body {
-        min-height: 100vh;
-        overflow-x: hidden;
-        color: white;
-        background:
-            radial-gradient(circle at 20% 20%, rgba(255,255,255,.15), transparent 25%),
-            radial-gradient(circle at 80% 30%, rgba(255,180,220,.18), transparent 25%),
-            linear-gradient(135deg, #5b2a86, #9b3f91 45%, #ff7b54);
-        position: relative;
+    50% {
+        transform: translateY(-25px) rotate(12deg);
     }
 
-    /* =========================
-       ПРАЗДНИЧНЫЙ ФОН
-    ========================= */
+    100% {
+        transform: translateY(20px) rotate(0deg);
+    }
+}
 
-    .party-bg {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 0;
+/* =========================
+   КОНФЕТТИ
+========================= */
+
+.confetti {
+    position: fixed;
+    width: 7px;
+    height: 12px;
+    background: rgba(255,255,255,.8);
+    animation: confettiFall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes confettiFall {
+    from {
+        transform: translateY(-100px) rotate(0deg);
     }
 
-    .balloon {
-        position: absolute;
-        font-size: 55px;
-        animation: balloonFloat 5s ease-in-out infinite;
-        opacity: .9;
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+/* =========================
+   ОСНОВНОЙ КОНТЕЙНЕР
+========================= */
+
+.app {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 35px;
+}
+
+.screen {
+    width: min(1500px, 100%);
+    display: none;
+    text-align: center;
+
+    animation: screenIn .45s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.98);
     }
 
-    .balloon:nth-child(1) {
-        left: 3%;
-        top: 12%;
-        animation-delay: 0s;
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
+}
 
-    .balloon:nth-child(2) {
-        right: 4%;
-        top: 18%;
-        animation-delay: 1.5s;
-    }
+.card {
+    background: rgba(30, 15, 50, .68);
 
-    .balloon:nth-child(3) {
-        left: 8%;
-        bottom: 12%;
-        animation-delay: 2.5s;
-    }
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 32px;
 
-    .balloon:nth-child(4) {
-        right: 8%;
-        bottom: 15%;
-        animation-delay: 3.5s;
-    }
+    padding: 55px 65px;
 
-    .balloon:nth-child(5) {
-        left: 45%;
-        top: 2%;
-        font-size: 40px;
-        animation-delay: .7s;
-    }
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.12);
 
-    @keyframes balloonFloat {
-        0%, 100% {
-            transform: translateY(0) rotate(-4deg);
-        }
-        50% {
-            transform: translateY(-25px) rotate(5deg);
-        }
-    }
+    backdrop-filter: blur(12px);
+}
+.birthday-title {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 35px;
+}
 
-    .party-item {
-        position: absolute;
-        font-size: 35px;
-        animation: partyMove 7s linear infinite;
-        opacity: .75;
-    }
+.quiz-title {
+    font-size: 42px;
+    font-weight: 1000;
+    line-height: 1.15;
+    color: #ffe98a;
+    text-align: center;
+    text-shadow:
+        0 3px 0 rgba(0,0,0,.18),
+        0 0 12px rgba(255,220,80,.35);
+}
 
-    .party-item:nth-child(6) {
-        left: 15%;
-        top: 4%;
-        animation-delay: 0s;
-    }
+.birthday-name {
+    margin-top: 18px;
+    font-size: 52px;
+    font-weight: 1000;
+    line-height: 1.1;
+    color: #ffe98a;
+    text-align: center;
+    text-shadow:
+        0 3px 0 rgba(0,0,0,.2),
+        0 0 16px rgba(255,220,80,.4);
+}
+/* =========================
+   START
+========================= */
 
-    .party-item:nth-child(7) {
-        right: 15%;
-        top: 7%;
-        animation-delay: 2s;
-    }
+.start-card {
+    padding: 65px 55px;
+}
 
-    .party-item:nth-child(8) {
-        left: 2%;
-        top: 50%;
-        animation-delay: 4s;
-    }
+.start-small {
+    font-size: clamp(32px, 3vw, 54px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
 
-    .party-item:nth-child(9) {
-        right: 3%;
-        top: 55%;
-        animation-delay: 1s;
-    }
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.35),
+        0 0 10px rgba(255,255,255,.18);
+}
 
-    .party-item:nth-child(10) {
-        left: 30%;
-        bottom: 3%;
-        animation-delay: 3s;
-    }
+.start-title {
+    font-size: clamp(58px, 7vw, 110px);
+    line-height: .95;
+    font-weight: 1000;
 
-    .party-item:nth-child(11) {
-        right: 30%;
-        bottom: 5%;
-        animation-delay: 5s;
-    }
+    margin: 0 0 12px;
 
-    @keyframes partyMove {
-        0% {
-            transform: translateY(20px) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-25px) rotate(12deg);
-        }
-        100% {
-            transform: translateY(20px) rotate(0deg);
-        }
-    }
+    color: #fff;
 
-    /* Конфетти */
+    text-shadow:
+        0 6px 25px rgba(0,0,0,.35),
+        0 0 8px rgba(255,255,255,.18);
+}
 
-    .confetti {
-        position: fixed;
-        width: 7px;
-        height: 12px;
-        background: rgba(255,255,255,.8);
-        animation: confettiFall linear infinite;
-        pointer-events: none;
-        z-index: 0;
-    }
+.start-name {
+    font-size: clamp(68px, 9vw, 135px);
+    line-height: .95;
+    font-weight: 1000;
 
-    @keyframes confettiFall {
-        from {
-            transform: translateY(-100px) rotate(0deg);
-        }
-        to {
-            transform: translateY(110vh) rotate(720deg);
-        }
-    }
+    margin: 0 0 45px;
 
-    /* =========================
-       ОСНОВНОЙ КОНТЕЙНЕР
-    ========================= */
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd6ef,
+            #fff2c4
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   ОБЩИЕ ЗАГОЛОВКИ
+========================= */
+
+.screen-title {
+    font-size: clamp(42px, 4.5vw, 72px);
+    line-height: 1.05;
+
+    margin: 0 0 20px;
+
+    font-weight: 900;
+
+    color: #fff;
+
+    text-shadow:
+        0 4px 15px rgba(0,0,0,.35),
+        0 0 9px rgba(255,255,255,.2);
+}
+
+.subtitle {
+    font-size: clamp(23px, 2vw, 32px);
+    line-height: 1.45;
+
+    margin: 0 auto 35px;
+
+    max-width: 1100px;
+}
+
+.round-number {
+    font-size: 24px;
+    font-weight: 800;
+    opacity: .8;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+}
+
+.round-note {
+    display: inline-block;
+
+    margin: 15px 0 35px;
+
+    padding: 13px 24px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.12);
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* =========================
+   КАТЕГОРИИ
+========================= */
+
+.category-boxes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    max-width: 1050px;
+
+    margin: 30px auto 35px;
+}
+
+.category-box {
+    padding: 32px 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.1);
+
+    border:
+        1px solid rgba(255,255,255,.16);
+}
+
+.category-icon {
+    font-size: 58px;
+    margin-bottom: 12px;
+}
+
+.category-title {
+    font-size: 32px;
+    font-weight: 1000;
+    margin-bottom: 10px;
+}
+
+.category-count {
+    font-size: 22px;
+    opacity: .8;
+    font-weight: 700;
+}
+
+/* =========================
+   ОБЩИЕ КНОПКИ
+========================= */
+
+button {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.main-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 72px;
+
+    padding: 17px 38px;
+
+    border-radius: 999px;
+
+    color: #4b155f;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff9a6,
+            #f3f79a,
+            #e8f58b
+        );
+
+    font-weight: 900;
+    font-size: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+
+    transition: .2s;
+
+    margin-top: 15px;
+}
+
+.main-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.3),
+        0 0 18px rgba(240,245,140,.45);
+}
+
+/* =========================
+   КНОПКА ПРОПУСТИТЬ
+========================= */
+
+.secondary-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 30px auto 5px;
+
+    min-height: 58px;
+
+    padding: 15px 28px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff9a6,
+            #f3f79a,
+            #e8f58b
+        );
+
+    color: #4b155f;
+
+    font-weight: 900;
+    font-size: 20px;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.2);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.secondary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 28px rgba(0,0,0,.25),
+        0 0 15px rgba(240,245,140,.4);
+}
+
+/* =========================
+   ВОПРОС
+========================= */
+
+.question-card {
+    position: relative;
+
+    padding-bottom: 45px;
+}
+
+.question-counter {
+    font-size: 21px;
+    font-weight: 800;
+
+    opacity: .75;
+
+    margin-bottom: 18px;
+}
+
+/* =========================
+   ТАЙМЕР
+========================= */
+
+.timer {
+    position: absolute;
+
+    top: 30px;
+    right: 30px;
+
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    font-weight: 1000;
+
+    background: rgba(255,255,255,.08);
+
+    border:
+        4px solid rgba(255,255,255,.45);
+
+    box-shadow:
+        0 5px 16px rgba(0,0,0,.3),
+        0 0 8px rgba(255,255,255,.15);
+
+    transition:
+        border-color .2s,
+        box-shadow .2s,
+        transform .2s;
+
+    z-index: 5;
+}
+
+.timer.warning {
+    border-color: #ffe600;
+
+    box-shadow:
+        0 6px 22px rgba(0,0,0,.3),
+        0 0 12px rgba(255,230,0,.55),
+        0 0 25px rgba(255,230,0,.3);
+}
+
+.timer.danger {
+    border-color: #ff3b55;
+
+    box-shadow:
+        0 6px 22px rgba(0,0,0,.3),
+        0 0 15px rgba(255,59,85,.7),
+        0 0 32px rgba(255,59,85,.45);
+
+    transform: scale(1.05);
+}
+
+/* =========================
+   ТЕКСТ ВОПРОСА
+========================= */
+
+.question {
+    color: #fff;
+
+    font-size: clamp(36px, 3.6vw, 58px);
+
+    line-height: 1.2;
+
+    font-weight: 1000;
+
+    margin: 0 auto 32px;
+
+    max-width: 1200px;
+
+    padding:
+        20px 30px
+        24px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.03) 0%,
+            rgba(255,255,255,.02) 55%,
+            rgba(115,55,170,.30) 100%
+        );
+
+    border: 2px solid #000;
+
+    text-shadow:
+        0 4px 14px rgba(0,0,0,.4),
+        0 0 6px rgba(255,255,255,.3),
+        0 0 14px rgba(255,190,230,.18);
+}
+
+/* =========================
+   ВАРИАНТЫ
+========================= */
+
+.options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+.option {
+    padding: 21px 25px;
+
+    min-height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(255,214,239,.08),
+            rgba(255,242,196,.14)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    font-size: 25px;
+    font-weight: 700;
+
+    text-align: left;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.12);
+
+    cursor: pointer;
+
+    transition:
+        transform .15s,
+        background .15s;
+}
+
+.option:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(255,214,239,.12),
+            rgba(255,242,196,.18)
+        );
+}
+
+.no-options {
+    display: none;
+}
+
+/* =========================
+   ФОТО-РАУНД
+========================= */
+
+/*
+   В фото-раунде вопрос НЕ имеет рамки.
+   Он находится сверху.
+   Фото слева, варианты справа.
+*/
+
+.photo-round-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(420px, .85fr);
+
+    gap: 45px;
+
+    align-items: start;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+}
+
+.photo-round-question {
+    display: block;
+
+    max-width: 1200px;
+
+    margin: 0 auto 35px;
+
+    padding: 0;
+
+    background: none;
+
+    border: none;
+
+    border-radius: 0;
+
+    color: #fff;
+
+    font-size: clamp(36px, 3.6vw, 58px);
+
+    line-height: 1.2;
+
+    font-weight: 1000;
+
+    text-align: center;
+
+    text-shadow:
+        0 4px 14px rgba(0,0,0,.4),
+        0 0 6px rgba(255,255,255,.3),
+        0 0 14px rgba(255,190,230,.18);
+}
+
+.photo-round-left {
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.question-photo-wrap {
+    display: block;
+
+    width: 100%;
+
+    min-height: 450px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.question-photo-wrap img {
+    width: 100%;
+
+    max-height: 600px;
+
+    object-fit: contain;
+
+    border-radius: 25px;
+
+    display: block;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.35);
+}
+
+.photo-round-right {
+    min-width: 0;
+
+    text-align: center;
+
+    padding-top: 0;
+
+    padding-bottom: 10px;
+}
+
+.photo-round-right .options {
+    grid-template-columns: 1fr;
+
+    margin: 0;
+
+    max-width: none;
+
+    width: 100%;
+}
+
+.photo-round-right .option {
+    min-height: 72px;
+
+    font-size: 25px;
+}
+
+.photo-round-right .secondary-btn {
+    margin-top: 32px;
+}
+
+/* =========================
+   СДАЁМ ОТВЕТЫ
+========================= */
+
+.submit-card {
+    padding: 70px 35px;
+}
+
+.submit-title {
+    font-size: clamp(50px, 7vw, 95px);
+
+    font-weight: 1000;
+
+    margin: 0 0 25px;
+
+    color: #ff4fc3;
+
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.35),
+        0 0 10px rgba(255,79,195,.75),
+        0 0 25px rgba(255,79,195,.45);
+}
+
+.submit-timer {
+    font-size: clamp(110px, 17vw, 190px);
+
+    font-weight: 1000;
+
+    line-height: .9;
+
+    margin: 10px 0;
+
+    color: #fff;
+
+    text-shadow:
+        0 8px 30px rgba(0,0,0,.35),
+        0 0 12px rgba(255,255,255,.2);
+}
+
+.submit-icon {
+    font-size: 65px;
+}
+
+/* =========================
+   ПЕРЕХОД НЕ
+========================= */
+
+.transition-card {
+    padding: 70px 40px;
+}
+
+.transition-icon {
+    font-size: 90px;
+    margin-bottom: 20px;
+}
+
+.transition-title {
+    font-size: clamp(44px, 5vw, 75px);
+
+    line-height: 1.05;
+
+    font-weight: 1000;
+
+    margin-bottom: 22px;
+
+    color: #fff;
+
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.35),
+        0 0 9px rgba(255,255,255,.18);
+}
+
+.transition-subtitle {
+    font-size: clamp(25px, 2.5vw, 36px);
+
+    line-height: 1.4;
+
+    max-width: 900px;
+
+    margin: 0 auto 40px;
+
+    color: #fff;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.3),
+        0 0 7px rgba(255,255,255,.15);
+}
+
+.red {
+    color: #ff3b55;
+
+    font-weight: 1000;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.35),
+        0 0 8px rgba(255,59,85,.45);
+}
+
+/* =========================
+   REVIEW
+========================= */
+
+.review-title {
+    font-size: clamp(38px, 4vw, 60px);
+
+    font-weight: 1000;
+
+    margin-bottom: 12px;
+
+    color: #fff;
+
+    text-shadow:
+        0 4px 15px rgba(0,0,0,.35),
+        0 0 9px rgba(255,255,255,.18);
+}
+
+.review-answer {
+    margin: 22px auto;
+
+    max-width: 1100px;
+
+    padding: 21px 25px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(100,255,170,.14);
+
+    border:
+        1px solid rgba(100,255,170,.3);
+
+    color: #65ff9a;
+
+    font-size: 27px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.25),
+        0 0 7px rgba(101,255,154,.2);
+}
+
+.review-comment {
+    font-size: 24px;
+
+    line-height: 1.4;
+
+    margin: 20px auto 35px;
+
+    max-width: 950px;
+
+    opacity: .9;
+}
+
+.review-screen .main-btn {
+    margin-top: 20px;
+}
+
+/* =========================
+   ПАУЗА
+========================= */
+
+.pause-btn {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    z-index: 20;
+
+    border-radius: 50%;
+
+    width: 62px;
+    height: 62px;
+
+    background: transparent;
+
+    color: white;
+
+    border: none;
+
+    font-size: 26px;
+
+    box-shadow: none;
+}
+
+.pause-overlay {
+    display: none !important;
+}
+
+/* =========================
+   ФИНАЛ
+========================= */
+
+.finish-title {
+    font-size: clamp(48px, 6vw, 90px);
+
+    font-weight: 1000;
+
+    margin-bottom: 15px;
+
+    color: #fff;
+
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.35),
+        0 0 9px rgba(255,255,255,.18);
+}
+
+.finish-name {
+    font-size: clamp(50px, 6vw, 92px);
+
+    font-weight: 1000;
+
+    margin-bottom: 28px;
+
+    color: #fff;
+
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.35),
+        0 0 9px rgba(255,255,255,.18);
+}
+
+.finish-text {
+    font-size: clamp(24px, 2.5vw, 34px);
+
+    line-height: 1.45;
+
+    max-width: 1000px;
+
+    margin: 0 auto 30px;
+}
+
+.emoji-line {
+    font-size: 42px;
+
+    line-height: 1.5;
+
+    margin: 25px 0;
+}
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (max-width: 900px) {
 
     .app {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .screen {
-        width: min(920px, 100%);
-        display: none;
-        text-align: center;
-        animation: screenIn .45s ease;
-    }
-
-    .screen.active {
-        display: block;
-    }
-
-    @keyframes screenIn {
-        from {
-            opacity: 0;
-            transform: translateY(15px) scale(.98);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        padding: 15px;
     }
 
     .card {
-        background: rgba(30, 15, 50, .68);
-        border: 1px solid rgba(255,255,255,.2);
-        border-radius: 28px;
-        padding: 32px;
-        box-shadow:
-            0 20px 60px rgba(0,0,0,.28),
-            inset 0 1px 0 rgba(255,255,255,.12);
-        backdrop-filter: blur(12px);
-    }
+        padding: 30px 22px;
 
-    /* =========================
-       ПЕРВЫЙ ЭКРАН
-    ========================= */
+        border-radius: 24px;
+    }
 
     .start-card {
-        padding: 42px 30px;
-    }
-
-    .start-small {
-        font-size: clamp(28px, 5vw, 48px);
-        font-weight: 900;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .start-title {
-        font-size: clamp(46px, 9vw, 92px);
-        line-height: .95;
-        font-weight: 1000;
-        letter-spacing: 0;
-        margin: 0 0 8px;
-        text-shadow: 0 6px 25px rgba(0,0,0,.25);
-    }
-
-    .start-name {
-        font-size: clamp(52px, 11vw, 110px);
-        line-height: .95;
-        font-weight: 1000;
-        margin: 0 0 25px;
-        background: linear-gradient(90deg, #fff, #ffd6ef, #fff2c4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: none;
-    }
-
-    /* =========================
-       ОБЩИЕ ЗАГОЛОВКИ
-    ========================= */
-
-    h1, h2, h3 {
-        margin-top: 0;
-    }
-
-    .screen-title {
-        font-size: clamp(34px, 6vw, 62px);
-        line-height: 1.05;
-        margin: 0 0 14px;
-        font-weight: 900;
-    }
-
-    .subtitle {
-        font-size: clamp(18px, 2.5vw, 24px);
-        line-height: 1.45;
-        margin: 0 auto 20px;
-        max-width: 760px;
-    }
-
-    .round-number {
-        font-size: 18px;
-        font-weight: 800;
-        opacity: .8;
-        margin-bottom: 7px;
-        text-transform: uppercase;
-    }
-
-    .round-note {
-        display: inline-block;
-        margin: 4px 0 18px;
-        padding: 10px 18px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.12);
-        font-size: 16px;
-        font-weight: 700;
-    }
-
-    .red {
-        color: #ff4d6d;
-        font-weight: 1000;
-    }
-
-    /* =========================
-       ФОТО
-    ========================= */
-
-    .photo-wrap {
-        margin: 18px auto;
-        max-width: 560px;
-    }
-
-    .photo-wrap img {
-        width: 100%;
-        max-height: 380px;
-        object-fit: contain;
-        border-radius: 22px;
-        display: block;
-        margin: 0 auto;
-        box-shadow: 0 15px 35px rgba(0,0,0,.3);
-    }
-
-    /* =========================
-       КНОПКИ
-    ========================= */
-
-    button {
-        border: none;
-        cursor: pointer;
-        font: inherit;
-    }
-
-    .main-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 58px;
-        padding: 14px 30px;
-        border-radius: 999px;
-        color: #4b155f;
-        background: linear-gradient(135deg, #fff, #ffd9ee);
-        font-weight: 900;
-        font-size: 18px;
-        box-shadow: 0 8px 25px rgba(0,0,0,.25);
-        transition: .2s;
-    }
-
-    .main-btn:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 12px 30px rgba(0,0,0,.3);
-    }
-
-    .secondary-btn {
-        margin-top: 15px;
-        padding: 12px 22px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.12);
-        color: white;
-        font-weight: 800;
-        border: 1px solid rgba(255,255,255,.2);
-    }
-
-    /* =========================
-       ВОПРОС
-    ========================= */
-
-    .question-counter {
-        font-size: 16px;
-        font-weight: 800;
-        opacity: .75;
-        margin-bottom: 10px;
-    }
-
-    .timer {
-        width: 82px;
-        height: 82px;
-        border-radius: 50%;
-        margin: 0 auto 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 34px;
-        font-weight: 1000;
-        background: rgba(255,255,255,.12);
-        border: 4px solid rgba(255,255,255,.35);
-    }
-
-    .question {
-        font-size: clamp(26px, 4vw, 42px);
-        line-height: 1.2;
-        font-weight: 900;
-        margin: 0 auto 20px;
-        max-width: 800px;
+        padding: 40px 20px;
     }
 
     .options {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        max-width: 760px;
-        margin: 0 auto 18px;
+        grid-template-columns: 1fr;
     }
 
     .option {
-        padding: 15px 18px;
-        border-radius: 16px;
-        background: rgba(255,255,255,.1);
-        border: 1px solid rgba(255,255,255,.16);
+        text-align: center;
+
+        justify-content: center;
+
         font-size: 18px;
-        font-weight: 700;
-        text-align: left;
+
+        padding: 15px;
     }
 
-    .no-options {
-        font-size: 20px;
-        font-weight: 800;
-        opacity: .85;
-        margin: 28px 0;
+    .question {
+        font-size: 29px;
+
+        padding:
+            18px 20px
+            22px;
+
+        margin-bottom: 28px;
     }
 
-    /* =========================
-       СДАЁМ ОТВЕТЫ
-    ========================= */
+    .photo-round-question {
+        font-size: 29px;
 
-    .submit-card {
-        padding: 55px 25px;
+        margin-bottom: 28px;
+
+        padding: 0;
     }
 
-    .submit-title {
-        font-size: clamp(38px, 8vw, 72px);
-        font-weight: 1000;
-        margin: 0 0 20px;
-    }
-
-    .submit-timer {
-        font-size: clamp(90px, 18vw, 170px);
-        font-weight: 1000;
-        line-height: .9;
-        margin: 10px 0;
-        text-shadow: 0 8px 30px rgba(0,0,0,.25);
-    }
-
-    .submit-icon {
-        font-size: 50px;
-    }
-
-    /* =========================
-       РАЗБОР
-    ========================= */
-
-    .review-title {
-        font-size: clamp(28px, 5vw, 48px);
-        font-weight: 1000;
-        margin-bottom: 8px;
-    }
-
-    .review-answer {
-        margin: 18px auto;
-        max-width: 760px;
-        padding: 17px 20px;
-        border-radius: 18px;
-        background: rgba(100,255,170,.14);
-        border: 1px solid rgba(100,255,170,.3);
-        font-size: 21px;
-        font-weight: 900;
-    }
-
-    .review-comment {
+    .subtitle {
         font-size: 19px;
-        line-height: 1.4;
-        margin: 15px auto 20px;
-        max-width: 700px;
-        opacity: .9;
     }
 
-    /* =========================
-       ПАУЗА
-    ========================= */
+    .balloon {
+        font-size: 38px;
+    }
+
+    .party-item {
+        font-size: 25px;
+    }
+
+    .main-btn {
+        width: 100%;
+
+        font-size: 18px;
+
+        margin-top: 22px;
+    }
+
+    .secondary-btn {
+        width: auto;
+
+        min-width: 190px;
+
+        margin:
+            28px auto
+            0;
+
+        font-size: 18px;
+    }
 
     .pause-btn {
-        position: fixed;
-        top: 18px;
-        right: 18px;
-        z-index: 20;
-        border-radius: 50%;
+        top: 10px;
+        right: 10px;
+
         width: 48px;
         height: 48px;
-        background: rgba(30,15,50,.65);
-        color: white;
-        border: 1px solid rgba(255,255,255,.2);
+
         font-size: 20px;
     }
 
-    .pause-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 30;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        background: rgba(10,5,20,.75);
-        backdrop-filter: blur(8px);
+    .category-boxes {
+        grid-template-columns: 1fr;
     }
 
-    .pause-overlay.active {
-        display: flex;
-    }
+    .timer {
+        top: 22px;
+        right: 20px;
 
-    .pause-box {
-        padding: 35px;
-        border-radius: 25px;
-        background: rgba(50,20,70,.95);
-        text-align: center;
-    }
+        width: 75px;
+        height: 75px;
 
-    .pause-box h2 {
-        font-size: 40px;
-        margin-bottom: 10px;
+        font-size: 28px;
+
+        border-width: 4px;
     }
 
     /* =========================
-       ФИНАЛ
+       ФОТО НА МОБИЛЬНОМ
     ========================= */
 
-    .finish-title {
-        font-size: clamp(40px, 8vw, 78px);
-        font-weight: 1000;
-        margin-bottom: 12px;
+    .photo-round-content {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
     }
 
-    .finish-name {
-        font-size: clamp(42px, 8vw, 80px);
-        font-weight: 1000;
-        margin-bottom: 22px;
+    .photo-round-left {
+        order: 1;
     }
 
-    .finish-text {
-        font-size: clamp(20px, 3vw, 27px);
-        line-height: 1.45;
-        max-width: 760px;
-        margin: 0 auto 25px;
+    .photo-round-right {
+        order: 2;
+
+        padding-bottom: 5px;
     }
 
-    .emoji-line {
-        font-size: 34px;
-        line-height: 1.5;
-        margin: 20px 0;
+    .photo-round-content .question-photo-wrap {
+        min-height: auto;
     }
 
-    /* =========================
-       МОБИЛЬНАЯ ВЕРСИЯ
-    ========================= */
-
-    @media (max-width: 620px) {
-
-        .app {
-            padding: 12px;
-        }
-
-        .card {
-            padding: 24px 17px;
-            border-radius: 22px;
-        }
-
-        .start-card {
-            padding: 35px 17px;
-        }
-
-        .options {
-            grid-template-columns: 1fr;
-        }
-
-        .option {
-            text-align: center;
-            font-size: 16px;
-            padding: 13px;
-        }
-
-        .question {
-            font-size: 25px;
-        }
-
-        .subtitle {
-            font-size: 17px;
-        }
-
-        .balloon {
-            font-size: 38px;
-        }
-
-        .party-item {
-            font-size: 25px;
-        }
-
-        .photo-wrap img {
-            max-height: 300px;
-        }
-
-        .main-btn {
-            width: 100%;
-            font-size: 16px;
-        }
-
-        .pause-btn {
-            top: 10px;
-            right: 10px;
-        }
+    .photo-round-content .options {
+        grid-template-columns: 1fr;
     }
+
+    .photo-round-content .option {
+        min-height: 65px;
+
+        font-size: 18px;
+    }
+
+    .photo-round-right .secondary-btn {
+        margin-top: 28px;
+    }
+
+    .question-photo-wrap img {
+        max-height: 350px;
+    }
+
+    .transition-card {
+        padding: 45px 25px;
+    }
+
+    .submit-card {
+        padding: 50px 25px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     ПРАЗДНИЧНЫЙ ФОН
-========================= -->
-
 <div class="party-bg">
+
     <div class="balloon">🎈</div>
     <div class="balloon">🎈</div>
     <div class="balloon">🎈</div>
@@ -618,198 +1234,415 @@
     <div class="party-item">🎊</div>
     <div class="party-item">🥳</div>
     <div class="party-item">🎂</div>
+
 </div>
 
-<!-- Конфетти -->
 <div id="confettiContainer"></div>
 
-<!-- Пауза -->
-<button class="pause-btn" id="pauseBtn" onclick="togglePause()">⏸</button>
+<button
+    class="pause-btn"
+    id="pauseBtn"
+    onclick="togglePause()">
+    ⏸
+</button>
+
 
 <div class="pause-overlay" id="pauseOverlay">
+
     <div class="pause-box">
+
         <h2>⏸ ПАУЗА</h2>
-        <p>Нажми пробел или кнопку, чтобы продолжить</p>
-        <button class="main-btn" onclick="togglePause()">▶ ПРОДОЛЖИТЬ</button>
+
+        <p>
+            Нажми пробел или кнопку, чтобы продолжить
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="togglePause()">
+            ▶ ПРОДОЛЖИТЬ
+        </button>
+
     </div>
+
 </div>
+
 
 <div class="app">
 
     <!-- =========================
          START
-    ========================= -->
+    ========================== -->
 
-    <section class="screen active" id="startScreen">
+    <section
+        class="screen active"
+        id="startScreen">
+
         <div class="card start-card">
 
-            <div class="start-small">🎉 КВИЗ 🎉</div>
-
             <div class="start-title">
-                HAPPY BIRTHDAY
+                 <div class="quiz-title">🎉 ПРАЗДНИЧНЫЙ КВИЗ 🎉</div>
+                 <div class="birthday-name">HAPPY BIRTHDAY ВАДИМ 🧡</div>
             </div>
 
-            <div class="start-name">
-                ВАДИМ!
-            </div>
+            <button
+                class="main-btn"
+                onclick="showWelcome()">
 
-            <button class="main-btn" onclick="showWelcome()">
                 🚀 НАЧАТЬ КВИЗ
+
             </button>
 
         </div>
+
     </section>
 
 
     <!-- =========================
          WELCOME
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="welcomeScreen">
+    <section
+        class="screen"
+        id="welcomeScreen">
+
         <div class="card">
 
             <div class="screen-title">
-                😈 ПРИВЕТСТВУЕМ ВАС,<br>
+
+                ПРИВЕТСТВУЕМ ВАС,
+                <br>
                 ЗНАТОКИ ЛОРА ВАДИМА!
+
             </div>
 
             <div class="subtitle">
-                Сегодня вам предстоит доказать,
-                насколько хорошо вы знаете главного героя
-                сегодняшнего дня.
-                <br><br>
-                Детство, игры, ДНД, путешествия, музыка
-                и факты, о которых Вадим, возможно,
-                предпочёл бы забыть. 😈
+
+                Сегодня вам предстоит полёт во вселенную Вадоса!
+                Детство, игры, днд, путешествия, музыка
+                и разные факты из жизни Вадима
+
             </div>
 
             <div class="photo-wrap">
+
                 <img
                     src="photos/intro.jpg"
                     alt="Вадим"
-                    onerror="this.parentElement.style.display='none'"
+                    onerror="
+                        this.parentElement.style.display='none'
+                    "
                 >
+
             </div>
 
-            <button class="main-btn" onclick="startRound(0)">
-                🎮 ПОЕХАЛИ!
+            <button
+                class="main-btn"
+                onclick="startRound(0)">
+
+                🎮 ПРИСТЕГНИТЕ РЕМНИ, МЫ НАЧИНАЕМ!
+
             </button>
 
         </div>
+
     </section>
 
 
     <!-- =========================
          ROUND INTRO
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="roundIntro">
+    <section
+        class="screen"
+        id="roundIntro">
+
         <div class="card">
 
-            <div class="round-number" id="roundNumber"></div>
+            <div
+                class="round-number"
+                id="roundNumber">
+            </div>
 
-            <div class="screen-title" id="roundTitle"></div>
+            <div
+                class="screen-title"
+                id="roundTitle">
+            </div>
 
-            <div class="subtitle" id="roundSubtitle"></div>
+            <div
+                class="subtitle"
+                id="roundSubtitle">
+            </div>
 
-            <div class="round-note" id="roundNote"></div>
+            <div id="categoryBoxes"></div>
+
+            <div
+                class="round-note"
+                id="roundNote">
+            </div>
 
             <br>
 
-            <button class="main-btn" onclick="beginQuestions()">
-                🎯 НАЧИНАЕМ
+            <button
+                class="main-btn"
+                onclick="beginQuestions()">
+
+                🎯 ПОЕХАЛИ
+
             </button>
 
         </div>
+
     </section>
 
 
     <!-- =========================
          QUESTION
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="questionScreen">
-        <div class="card">
+    <section
+        class="screen"
+        id="questionScreen">
 
-            <div class="question-counter" id="questionCounter"></div>
+        <div
+            class="card question-card"
+            id="questionCard">
 
-            <div class="timer" id="timer">
-                15
+            <div
+                class="question-counter"
+                id="questionCounter">
             </div>
 
-            <div class="question" id="question"></div>
-
-            <div class="options" id="options"></div>
-
-            <div class="no-options" id="noOptions" style="display:none;">
-                ✍️ Запиши свой ответ на листе
+            <div
+                class="timer"
+                id="timer">
+                20
             </div>
 
-            <button class="secondary-btn" onclick="skipQuestion()">
-                ⏭ ПРОПУСТИТЬ
-            </button>
+
+            <!-- ОБЫЧНЫЙ ВОПРОС -->
+
+            <div
+                class="normal-question-content"
+                id="normalQuestionContent">
+
+                <div
+                    class="question"
+                    id="question">
+                </div>
+
+                <div
+                    class="options"
+                    id="normalOptions">
+                </div>
+
+                <div
+                    class="no-options"
+                    id="noOptions">
+                </div>
+
+                <button
+                    class="secondary-btn"
+                    onclick="skipQuestion()">
+
+                    ⏭ ПРОПУСТИТЬ
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 ФОТО-РАУНД
+            ========================== -->
+
+            <div
+                class="photo-round-question"
+                id="photoRoundQuestion">
+            </div>
+
+            <div
+                class="photo-round-content"
+                id="photoRoundContent">
+
+                <!-- СЛЕВА ФОТО -->
+
+                <div class="photo-round-left">
+
+                    <div
+                        class="question-photo-wrap"
+                        id="questionPhotoWrap">
+
+                        <img
+                            id="questionPhoto"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- СПРАВА ВАРИАНТЫ -->
+
+                <div class="photo-round-right">
+
+                    <div
+                        class="options"
+                        id="options">
+                    </div>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="skipQuestion()">
+
+                        ⏭ ПРОПУСТИТЬ
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
+
     </section>
 
 
     <!-- =========================
          SUBMIT
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="submitScreen">
+    <section
+        class="screen"
+        id="submitScreen">
+
         <div class="card submit-card">
 
-            <div class="submit-icon">📝</div>
+            <div class="submit-icon">
+                📝
+            </div>
 
             <div class="submit-title">
                 СДАЁМ ОТВЕТЫ
             </div>
 
-            <div class="submit-timer" id="submitTimer">
-                15
+            <div
+                class="submit-timer"
+                id="submitTimer">
+                25
             </div>
 
         </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRANSITION НЕ
+    ========================== -->
+
+    <section
+        class="screen"
+        id="transitionScreen">
+
+        <div class="card transition-card">
+
+            <div class="transition-icon">
+                🚫
+            </div>
+
+            <div class="transition-title">
+                БЛОК <span class="red">«НЕ»</span>
+            </div>
+
+            <div class="transition-subtitle">
+
+                ЭТОГО ВАДИМ
+                <span class="red">НЕ</span>
+                ДЕЛАЛ
+
+            </div>
+
+            <button
+                class="main-btn"
+                onclick="continueNotBlock()">
+
+                🚀 ПРОДОЛЖИТЬ
+
+            </button>
+
+        </div>
+
     </section>
 
 
     <!-- =========================
          REVIEW
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="reviewScreen">
+    <section
+        class="screen"
+        id="reviewScreen">
+
         <div class="card">
 
             <div class="review-title">
                 ✅ ПРАВИЛЬНЫЙ ОТВЕТ
             </div>
 
-            <div class="question-counter" id="reviewCounter"></div>
-
-            <div class="question" id="reviewQuestion"></div>
-
-            <div class="review-answer" id="reviewAnswer"></div>
-
-            <div class="photo-wrap" id="reviewPhotoWrap">
-                <img id="reviewPhoto" alt="">
+            <div
+                class="question-counter"
+                id="reviewCounter">
             </div>
 
-            <div class="review-comment" id="reviewComment"></div>
+            <div
+                class="question"
+                id="reviewQuestion">
+            </div>
 
-            <button class="main-btn" onclick="nextReview()">
+            <div
+                class="review-answer"
+                id="reviewAnswer">
+            </div>
+
+            <div
+                class="photo-wrap"
+                id="reviewPhotoWrap">
+
+                <img
+                    id="reviewPhoto"
+                    alt=""
+                >
+
+            </div>
+
+            <div
+                class="review-comment"
+                id="reviewComment">
+            </div>
+
+            <button
+                class="main-btn"
+                onclick="nextReview()">
+
                 ➡️ ДАЛЬШЕ
+
             </button>
 
         </div>
+
     </section>
 
 
     <!-- =========================
          FINISH
-    ========================= -->
+    ========================== -->
 
-    <section class="screen" id="finishScreen">
+    <section
+        class="screen"
+        id="finishScreen">
+
         <div class="card">
 
             <div class="finish-title">
@@ -818,38 +1651,28 @@
 
             <div class="finish-name">
                 ВАДИМ, С ДНЁМ РОЖДЕНИЯ! 🥳
-            </div>
-
-            <div class="emoji-line">
-                🎂 🎈 🎁 🎊 🥳 🎉
-            </div>
 
             <div class="finish-text">
+
                 Спасибо всем, кто участвовал! ❤️
+
                 <br><br>
-                Надеюсь, сегодня вы узнали о Вадиме
-                <strong>больше!</strong> 😈
-                <br><br>
-                Ну а Вадим теперь официально знает,
-                насколько хорошо его знают окружающие. 😂
+
+                Надеюсь, сегодня вы узнали о Вадиме немного
+                <strong>больше!</strong> 
+
             </div>
 
-            <div class="emoji-line">
-                🎮 🧙‍♂️ 🐶 ✈️ 🎵 🍫
-            </div>
+            <button
+                class="main-btn"
+                onclick="location.reload()">
 
-            <div class="finish-text">
-                Ещё раз с днём рождения, Вадим! ❤️
-                <br>
-                Пусть жизнь будет такой же насыщенной,
-                как твой лор. 😎
-            </div>
-
-            <button class="main-btn" onclick="location.reload()">
                 🔄 ПРОЙТИ ЕЩЁ РАЗ
+
             </button>
 
         </div>
+
     </section>
 
 </div>
@@ -858,30 +1681,40 @@
 <script>
 
 /* =========================================================
-   СОЗДАЁМ КОНФЕТТИ
+   КОНФЕТТИ
 ========================================================= */
 
-const confettiContainer = document.getElementById("confettiContainer");
+const confettiContainer =
+    document.getElementById("confettiContainer");
 
 for (let i = 0; i < 45; i++) {
 
-    const confetti = document.createElement("div");
+    const confetti =
+        document.createElement("div");
 
-    confetti.className = "confetti";
+    confetti.className =
+        "confetti";
 
-    confetti.style.left = Math.random() * 100 + "%";
-    confetti.style.animationDuration = (4 + Math.random() * 6) + "s";
-    confetti.style.animationDelay = (-Math.random() * 8) + "s";
+    confetti.style.left =
+        Math.random() * 100 + "%";
+
+    confetti.style.animationDuration =
+        (4 + Math.random() * 6) + "s";
+
+    confetti.style.animationDelay =
+        (-Math.random() * 8) + "s";
 
     confetti.style.transform =
         `rotate(${Math.random() * 360}deg)`;
 
-    confettiContainer.appendChild(confetti);
+    confettiContainer.appendChild(
+        confetti
+    );
 }
 
 
 /* =========================================================
-   ДАННЫЕ РАУНДОВ
+   РАУНД 1
 ========================================================= */
 
 const round1 = [
@@ -909,7 +1742,7 @@ const round1 = [
         ],
         answer: "Б) Алабай",
         photo: "photos/q2.jpg",
-        comment: "Вот это уже серьёзная собака."
+        comment: "Вот это уже серьёзная собака"
     },
 
     {
@@ -922,7 +1755,7 @@ const round1 = [
         ],
         answer: "Г) Мопс",
         photo: "photos/q3.jpg",
-        comment: "Мопсы — это круто."
+        comment: "Мопсы — это круто"
     },
 
     {
@@ -935,7 +1768,7 @@ const round1 = [
         ],
         answer: "А) Мушкетер",
         photo: "photos/q4.jpg",
-        comment: "Образ, который мы заслужили."
+        comment: "Образ, который мы заслужили"
     },
 
     {
@@ -952,7 +1785,7 @@ const round1 = [
     },
 
     {
-        q: "На какую секцию ходил Вадим?",
+        q: "На какую секцию ходил Вадим в возрасте 10-16 лет?",
         options: [
             "А) Футбол",
             "Б) Карате",
@@ -961,7 +1794,7 @@ const round1 = [
         ],
         answer: "Б) Карате",
         photo: "photos/q6.jpg",
-        comment: "Вот здесь интересно узнать, кто что написал."
+        comment: "Вот здесь интересно узнать, кто что написал"
     },
 
     {
@@ -974,7 +1807,7 @@ const round1 = [
         ],
         answer: "В) Радио Маруся",
         photo: "photos/q7.jpg",
-        comment: "Да, Вадим однажды оказался и на радио."
+        comment: "Да, Вадим однажды оказался и на радио"
     },
 
     {
@@ -987,13 +1820,17 @@ const round1 = [
         ],
         answer: "Г) На Париж",
         photo: "photos/q8.jpg",
-        comment: "Ну всё, теперь официально кинозвезда."
+        comment: "Ну всё, теперь официально кинозвезда"
     }
 
 ];
 
 
-const round2 = [
+/* =========================================================
+   РАУНД 2 — ФЕНТЕЗЯТИНА
+========================================================= */
+
+const round2Fantasy = [
 
     {
         q: "Какая игра была у Вадима самой первой?",
@@ -1005,7 +1842,8 @@ const round2 = [
         ],
         answer: "А) Tomba! 2",
         photo: "photos/r2q1.jpg",
-        comment: "С самого начала — настоящий олдфаг."
+        comment: "С самого начала — настоящий олдфаг",
+        block: "fantasy"
     },
 
     {
@@ -1018,7 +1856,8 @@ const round2 = [
         ],
         answer: "В) Мастера меча онлайн",
         photo: "photos/r2q2.jpg",
-        comment: "Вот с этого всё и началось."
+        comment: "Вот с этого всё и началось",
+        block: "fantasy"
     },
 
     {
@@ -1031,7 +1870,8 @@ const round2 = [
         ],
         answer: "В) Diablo III",
         photo: "photos/r2q3.jpg",
-        comment: "Первый совместный игровой грех 😈"
+        comment: "С этого все и началось 🧡",
+        block: "fantasy"
     },
 
     {
@@ -1044,7 +1884,8 @@ const round2 = [
         ],
         answer: "Г) Саня Доронин",
         photo: "photos/r2q4.jpg",
-        comment: "Вот он — человек, который открыл Вадиму дверь в этот безумный мир."
+        comment: "Вот он — человек, который открыл Вадиму дверь в этот безумный мир",
+        block: "fantasy"
     },
 
     {
@@ -1057,16 +1898,21 @@ const round2 = [
         ],
         answer: "А) Аларик — чемпион",
         photo: "photos/r2q5.jpg",
-        comment: "Аларик. Первый из многих персонажей, которых ждала тяжёлая судьба."
+        comment: "Аларик. Первый персонаж Вадима",
+        block: "fantasy"
     }
 
 ];
 
 
-const round3 = [
+/* =========================================================
+   РАУНД 2 — НЕ
+========================================================= */
+
+const round2Not = [
 
     {
-        q: "На какой активности <span class='red'>НЕ</span> был Вадим?",
+        q: "На какой активности НЕ был Вадим?",
         options: [
             "А) Картинг",
             "Б) Теннис",
@@ -1075,11 +1921,12 @@ const round3 = [
         ],
         answer: "Г) Каток",
         photo: "photos/r3q1.jpg",
-        comment: "Каток — мимо. Там Вадима не было."
+        comment: "Каток — мимо. Там Вадима не было",
+        block: "not"
     },
 
     {
-        q: "Какой цвет вы <span class='red'>НЕ</span> увидите в гардеробе у Вадима?",
+        q: "Какой цвет вы НЕ увидите в гардеробе у Вадима?",
         options: [
             "А) Чёрный",
             "Б) Бордовый",
@@ -1088,11 +1935,12 @@ const round3 = [
         ],
         answer: "В) Зелёный",
         photo: "photos/r3q2.jpg",
-        comment: "Зелёный в гардеробе Вадима не замечен."
+        comment: "Зелёный в гардеробе Вадима не замечен",
+        block: "not"
     },
 
     {
-        q: "Какой фильм <span class='red'>НЕ</span> смотрел Вадим?",
+        q: "Какой фильм НЕ смотрел Вадим?",
         options: [
             "А) «Бойцовский клуб»",
             "Б) «Большой Лебовски»",
@@ -1101,11 +1949,12 @@ const round3 = [
         ],
         answer: "Б) «Большой Лебовски»",
         photo: "photos/r3q3.jpg",
-        comment: "Вот этот фильм из списка — исключение."
+        comment: "Вот этот фильм из списка — исключение",
+        block: "not"
     },
 
     {
-        q: "Какой из жанров музыки Вадим <span class='red'>НЕ</span> слушает?",
+        q: "Какой из жанров музыки Вадим НЕ слушает?",
         options: [
             "А) Рейв",
             "Б) Русский рок",
@@ -1114,11 +1963,12 @@ const round3 = [
         ],
         answer: "Г) K-pop",
         photo: "photos/r3q4.jpg",
-        comment: "K-pop в музыкальном лоре Вадима отсутствует 😈"
+        comment: "K-pop в музыкальном лоре Вадима отсутствует",
+        block: "not"
     },
 
     {
-        q: "За какой класс <span class='red'>НЕ</span> играл Вадим в ДНД?",
+        q: "За какой класс НЕ играл Вадим в ДНД?",
         options: [
             "А) Паладин",
             "Б) Рога",
@@ -1127,59 +1977,152 @@ const round3 = [
         ],
         answer: "А) Паладин",
         photo: "photos/r3q5.jpg",
-        comment: "Паладин — тот самый класс, за который Вадим не играл."
+        comment: "Паладин — тот самый класс, за который Вадим не играл",
+        block: "not"
     },
 
     {
-        q: "В какой стране Вадим и Ксеня <span class='red'>НЕ</span> были?",
+        q: "В какой стране Вадим и Ксеня НЕ были?",
         options: [
-            "А) Финляндия 🇫🇮",
-            "Б) Италия 🇮🇹",
-            "В) Чехия 🇨🇿",
-            "Г) Германия 🇩🇪"
+            "А) Финляндия ",
+            "Б) Италия ",
+            "В) Чехия ",
+            "Г) Германия "
         ],
-        answer: "Б) Италия 🇮🇹",
+        answer: "Б) Италия ",
         photo: "photos/r3q6.jpg",
-        comment: "Италия пока остаётся страной, где Вадим и Ксеня ещё не побывали."
+        comment: "Италия пока остаётся страной, где Вадим и Ксеня ещё не побывали",
+        block: "not"
     }
 
 ];
 
+
+/* =========================================================
+   ФОТО-РАУНД
+========================================================= */
+
+const round3 = [
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Мопс",
+            "Б) Арбуз",
+            "В) Рюкзак",
+            "Г) Карлик"
+        ],
+        answer: "А) Мопс",
+        photo: "photos/r4q1.jpg",
+        comment: "Ну тут внимательные должны были узнать героя сразу"
+    },
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Шоколад",
+            "Б) Телефон",
+            "В) Пачка салфеток",
+            "Г) Банан"
+        ],
+        answer: "Б) Телефон",
+        photo: "photos/r4q2.jpg",
+        comment: "Спокойно. Это всего лишь телефон"
+    },
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Рулон обоев",
+            "Б) Флаг РФ",
+            "В) Берёза",
+            "Г) Гигантский шашлык"
+        ],
+        answer: "В) Берёза",
+        photo: "photos/r4q3.jpg",
+        comment: "Русская классика: Вадим и берёза"
+    },
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Общение с другом",
+            "Б) Котлета",
+            "В) Отзеркаленный Вадим",
+            "Г) Сиськи"
+        ],
+        answer: "Г) Сиськи",
+        photo: "photos/r4q4.jpg",
+        comment: "Ну а что ещё здесь можно было ожидать? 😂"
+    },
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Дамский коктейль",
+            "Б) Чупа-чупс",
+            "В) Мороженое",
+            "Г) Вилка с морковкой"
+        ],
+        answer: "А) Дамский коктейль",
+        photo: "photos/r4q5.jpg",
+        comment: "Вадим просто культурно отдыхает"
+    },
+
+    {
+        q: "Что изображено на фото?",
+        options: [
+            "А) Некромант",
+            "Б) Ксеня",
+            "В) Курьер «Яндекс»",
+            "Г) Директор «Яшкино»"
+        ],
+        answer: "Б) Ксеня",
+        photo: "photos/r4q6.jpg",
+        comment: "Да, это она. Даже если на фото пришлось скрыться"
+    }
+
+];
+
+
+/* =========================================================
+   РАУНД 4
+========================================================= */
 
 const round4 = [
 
     {
         q: "Концепт какого животного сделал для Ликориса Вадим?",
         answer: "Варан",
-        photo: "photos/r4q1.jpg",
+        photo: "photos/r5q1.jpg",
         comment: "Да, тот самый варан 🦎"
     },
 
     {
         q: "Любимый класс Вадима в играх?",
         answer: "Некромант",
-        photo: "photos/r4q2.jpg",
+        photo: "photos/r5q2.jpg",
         comment: "Некромант — без вариантов, это база."
     },
 
     {
         q: "В какой вид спорта играл Вадим во Франции?",
         answer: "Мини-футбол",
-        photo: "photos/r4q3.jpg",
-        comment: "Французская глава спортивной карьеры 🇫🇷⚽"
+        photo: "photos/r5q3.jpg",
+        comment: "Французская глава спортивной карьеры ⚽"
     },
 
     {
         q: "Сколько татуировок у Вадима?",
         answer: "2",
-        photo: "photos/r4q4.jpg",
-        comment: "Две татуировки. Теперь это официальная цифра лора."
+        photo: "photos/r5q4.jpg",
+        comment: "Вот так то"
     },
 
     {
         q: "Любимый бренд сладостей Вадима?",
         answer: "Яшкино",
-        photo: "photos/r4q5.jpg",
+        photo: "photos/r5q5.jpg",
         comment: "Яшкино — сладкий фаворит 🍫"
     }
 
@@ -1194,30 +2137,53 @@ const rounds = [
 
     {
         title: "🎂 РАУНД 1 — ДЕТСТВО И ФАКТЫ",
-        subtitle: "Проверяем, насколько хорошо вы знаете детство и самые важные факты из жизни Вадима.",
+       subtitle: 
+       "Просто небольшая разминочка",
         data: round1,
-        time: 15
-    },
-
-    {
-        title: "🎮 РАУНД 2 — ФЕНТЕЗЯТИНА",
-        subtitle: "Игры, аниме, ДНД и другие вещи, которые сформировали Вадима таким, какой он есть.",
-        data: round2,
-        time: 15
-    },
-
-    {
-        title: "🚫 РАУНД 3 — НЕ",
-        subtitle: "<strong>Вадим этого <span class='red'>НЕ</span> ДЕЛАЛ</strong>",
-        data: round3,
-        time: 15
-    },
-
-    {
-        title: "🧠 РАУНД 4 — БЕЗ ВАРИАНТОВ",
-        subtitle: "<strong>Да, вот так жестко 😈</strong><br><br>Здесь Вадим пишет ответы самостоятельно. Никаких подсказок. Никаких вариантов. Только чистое знание.",
-        data: round4,
         time: 20
+    },
+
+    {
+        title:
+            "🎮 РАУНД 2 — ФЕНТЕЗЯТИНА + «НЕ»",
+       subtitle: 
+            "Игры, аниме, ДНД и другие вещи, которые сформировали Вадима таким, какой он есть",
+
+        data: [
+            ...round2Fantasy,
+            ...round2Not
+        ],
+
+        time: 20,
+
+        categories: true
+    },
+
+    {
+        title:
+            "📸 РАУНД 3 — ЧТО НА ФОТО?",
+          subtitle: 
+             "Смотрите внимательно. Здесь фотография знает больше, чем кажется",
+
+        data: round3,
+
+        time: 30,
+
+        photoRound: true
+    },
+
+    {
+        title:
+            "🧠 РАУНД 4 — БЕЗ ВАРИАНТОВ",
+
+        subtitle:
+            "Да, вот так жестко 😈<br><br>Никаких вариантов. Только чистое знание",
+
+        data: round4,
+
+        time: 20,
+
+        noOptions: true
     }
 
 ];
@@ -1231,7 +2197,8 @@ let currentRound = 0;
 let currentQuestion = 0;
 let reviewIndex = 0;
 
-let timeLeft = 15;
+let timeLeft = 20;
+
 let timerId = null;
 let submitId = null;
 
@@ -1242,42 +2209,111 @@ let paused = false;
    ЭЛЕМЕНТЫ
 ========================================================= */
 
-const screens = document.querySelectorAll(".screen");
+const screens =
+    document.querySelectorAll(".screen");
 
-const startScreen = document.getElementById("startScreen");
-const welcomeScreen = document.getElementById("welcomeScreen");
-const roundIntro = document.getElementById("roundIntro");
-const questionScreen = document.getElementById("questionScreen");
-const submitScreen = document.getElementById("submitScreen");
-const reviewScreen = document.getElementById("reviewScreen");
-const finishScreen = document.getElementById("finishScreen");
+const welcomeScreen =
+    document.getElementById("welcomeScreen");
 
-const roundNumber = document.getElementById("roundNumber");
-const roundTitle = document.getElementById("roundTitle");
-const roundSubtitle = document.getElementById("roundSubtitle");
-const roundNote = document.getElementById("roundNote");
+const roundIntro =
+    document.getElementById("roundIntro");
 
-const questionCounter = document.getElementById("questionCounter");
-const question = document.getElementById("question");
-const options = document.getElementById("options");
-const noOptions = document.getElementById("noOptions");
-const timer = document.getElementById("timer");
+const questionScreen =
+    document.getElementById("questionScreen");
 
-const submitTimer = document.getElementById("submitTimer");
+const questionCard =
+    document.getElementById("questionCard");
 
-const reviewCounter = document.getElementById("reviewCounter");
-const reviewQuestion = document.getElementById("reviewQuestion");
-const reviewAnswer = document.getElementById("reviewAnswer");
-const reviewPhoto = document.getElementById("reviewPhoto");
-const reviewPhotoWrap = document.getElementById("reviewPhotoWrap");
-const reviewComment = document.getElementById("reviewComment");
+const submitScreen =
+    document.getElementById("submitScreen");
 
-const pauseBtn = document.getElementById("pauseBtn");
-const pauseOverlay = document.getElementById("pauseOverlay");
+const transitionScreen =
+    document.getElementById("transitionScreen");
+
+const reviewScreen =
+    document.getElementById("reviewScreen");
+
+const finishScreen =
+    document.getElementById("finishScreen");
+
+const roundNumber =
+    document.getElementById("roundNumber");
+
+const roundTitle =
+    document.getElementById("roundTitle");
+
+const roundSubtitle =
+    document.getElementById("roundSubtitle");
+
+const roundNote =
+    document.getElementById("roundNote");
+
+const categoryBoxes =
+    document.getElementById("categoryBoxes");
+
+const questionCounter =
+    document.getElementById("questionCounter");
+
+const question =
+    document.getElementById("question");
+
+const photoRoundQuestion =
+    document.getElementById("photoRoundQuestion");
+
+const normalQuestionContent =
+    document.getElementById("normalQuestionContent");
+
+const photoRoundContent =
+    document.getElementById("photoRoundContent");
+
+const normalOptions =
+    document.getElementById("normalOptions");
+
+const options =
+    document.getElementById("options");
+
+const noOptions =
+    document.getElementById("noOptions");
+
+const timer =
+    document.getElementById("timer");
+
+const questionPhotoWrap =
+    document.getElementById("questionPhotoWrap");
+
+const questionPhoto =
+    document.getElementById("questionPhoto");
+
+const submitTimer =
+    document.getElementById("submitTimer");
+
+const reviewCounter =
+    document.getElementById("reviewCounter");
+
+const reviewQuestion =
+    document.getElementById("reviewQuestion");
+
+const reviewAnswer =
+    document.getElementById("reviewAnswer");
+
+const reviewPhoto =
+    document.getElementById("reviewPhoto");
+
+const reviewPhotoWrap =
+    document.getElementById("reviewPhotoWrap");
+
+const reviewComment =
+    document.getElementById("reviewComment");
+
+const pauseBtn =
+    document.getElementById("pauseBtn");
+
+const pauseOverlay =
+    document.getElementById("pauseOverlay");
 
 
 /* =========================================================
-   ЭКРАНЫ
+   ПОКАЗ ЭКРАНА
 ========================================================= */
 
 function showScreen(screen) {
@@ -1291,14 +2327,15 @@ function showScreen(screen) {
 
 
 /* =========================================================
-   ПРИВЕТСТВИЕ
+   WELCOME
 ========================================================= */
 
 function showWelcome() {
 
     showScreen(welcomeScreen);
 
-    pauseBtn.style.display = "none";
+    pauseBtn.style.display =
+        "none";
 }
 
 
@@ -1315,21 +2352,73 @@ function startRound(index) {
     currentQuestion = 0;
     reviewIndex = 0;
 
-    const round = rounds[currentRound];
+    paused = false;
+
+    const round =
+        rounds[currentRound];
 
     roundNumber.innerHTML =
         `РАУНД ${currentRound + 1} ИЗ ${rounds.length}`;
 
-    roundTitle.innerHTML = round.title;
+    roundTitle.innerHTML =
+        round.title;
 
-    roundSubtitle.innerHTML = round.subtitle;
+    roundSubtitle.innerHTML =
+        round.subtitle;
+
+    categoryBoxes.innerHTML =
+        "";
+
+    if (round.categories) {
+
+        categoryBoxes.innerHTML = `
+
+            <div class="category-boxes">
+
+                <div class="category-box">
+
+                    <div class="category-icon">
+                        🎮
+                    </div>
+
+                    <div class="category-title">
+                        ФЕНТЕЗЯТИНА
+                    </div>
+
+                    <div class="category-count">
+                        5 вопросов
+                    </div>
+
+                </div>
+
+                <div class="category-box">
+
+                    <div class="category-icon">
+                        🚫
+                    </div>
+
+                    <div class="category-title">
+                        НЕ
+                    </div>
+
+                    <div class="category-count">
+                        6 вопросов
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+    }
 
     roundNote.innerHTML =
-        `📄 БЕРЁМ БЛАНКИ! В этом раунде ${round.data.length} вопросов`;
+        `📄 Готовим бланки на ${round.data.length} вопросов. 20 секунд на ответ`;
 
     showScreen(roundIntro);
 
-    pauseBtn.style.display = "none";
+    pauseBtn.style.display =
+        "none";
 }
 
 
@@ -1343,9 +2432,203 @@ function beginQuestions() {
 
     showScreen(questionScreen);
 
-    pauseBtn.style.display = "block";
+    pauseBtn.style.display =
+        "block";
 
     showQuestion();
+}
+
+
+/* =========================================================
+   ПЕРЕХОД К НЕ
+========================================================= */
+
+function showNotTransition() {
+
+    clearInterval(timerId);
+
+    paused = false;
+
+    updatePause();
+
+    showScreen(transitionScreen);
+
+    pauseBtn.style.display =
+        "none";
+}
+
+
+/* =========================================================
+   ПРОДОЛЖИТЬ НЕ
+========================================================= */
+
+function continueNotBlock() {
+
+    currentQuestion = 5;
+
+    showScreen(questionScreen);
+
+    pauseBtn.style.display =
+        "block";
+
+    renderQuestion();
+}
+
+
+/* =========================================================
+   ВАРИАНТЫ
+========================================================= */
+
+function renderOptions(target, q) {
+
+    target.innerHTML =
+        "";
+
+    q.options.forEach(optionText => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "option";
+
+        div.innerHTML =
+            optionText;
+
+        div.onclick =
+            function() {
+
+                nextQuestion();
+
+            };
+
+        target.appendChild(div);
+
+    });
+}
+
+
+/* =========================================================
+   РЕНДЕР ВОПРОСА
+========================================================= */
+
+function renderQuestion() {
+
+    clearInterval(timerId);
+
+    paused = false;
+
+    updatePause();
+
+    const round =
+        rounds[currentRound];
+
+    const q =
+        round.data[currentQuestion];
+
+
+    questionCounter.innerHTML =
+        `ВОПРОС ${currentQuestion + 1} / ${round.data.length}`;
+
+
+    /* =========================
+       ФОТО-РАУНД
+    ========================== */
+
+    if (round.photoRound) {
+
+        normalQuestionContent.style.display =
+            "none";
+
+        photoRoundContent.style.display =
+            "grid";
+
+        question.style.display =
+            "none";
+
+        photoRoundQuestion.style.display =
+            "block";
+
+        photoRoundQuestion.innerHTML =
+            q.q;
+
+        questionPhotoWrap.style.display =
+            "flex";
+
+        questionPhoto.src =
+            q.photo;
+
+        questionPhoto.onerror =
+            function() {
+
+                questionPhotoWrap.style.display =
+                    "none";
+
+            };
+
+        renderOptions(
+            options,
+            q
+        );
+
+    }
+
+    /* =========================
+       ОБЫЧНЫЙ РАУНД
+    ========================== */
+
+    else {
+
+        photoRoundContent.style.display =
+            "none";
+
+        photoRoundQuestion.style.display =
+            "none";
+
+        normalQuestionContent.style.display =
+            "block";
+
+        question.style.display =
+            "block";
+
+        question.innerHTML =
+            q.q;
+
+
+        if (round.noOptions) {
+
+            normalOptions.style.display =
+                "none";
+
+            noOptions.style.display =
+                "none";
+
+        }
+
+        else {
+
+            normalOptions.style.display =
+                "grid";
+
+            noOptions.style.display =
+                "none";
+
+            renderOptions(
+                normalOptions,
+                q
+            );
+
+        }
+
+    }
+
+
+    timeLeft =
+        round.time;
+
+    renderTimer();
+
+    startTimer();
 }
 
 
@@ -1355,78 +2638,78 @@ function beginQuestions() {
 
 function showQuestion() {
 
-    clearInterval(timerId);
+    if (
+        currentRound === 1 &&
+        currentQuestion === 5
+    ) {
 
-    paused = false;
-    updatePause();
+        showNotTransition();
 
-    const round = rounds[currentRound];
-    const q = round.data[currentQuestion];
-
-    questionCounter.innerHTML =
-        `ВОПРОС ${currentQuestion + 1} / ${round.data.length}`;
-
-    question.innerHTML = q.q;
-
-    options.innerHTML = "";
-
-    if (round === rounds[3]) {
-
-        noOptions.style.display = "block";
-
-    } else {
-
-        noOptions.style.display = "none";
-
-        q.options.forEach(optionText => {
-
-            const div = document.createElement("div");
-
-            div.className = "option";
-
-            div.innerHTML = optionText;
-
-            options.appendChild(div);
-
-        });
+        return;
     }
 
-    timeLeft = round.time;
-
-    renderTimer();
-
-    startTimer();
+    renderQuestion();
 }
 
 
 /* =========================================================
-   ТАЙМЕР ВОПРОСА
+   ТАЙМЕР
 ========================================================= */
 
 function startTimer() {
 
-    timerId = setInterval(() => {
+    timerId =
+        setInterval(() => {
 
-        if (paused) return;
+            if (paused) {
+                return;
+            }
 
-        timeLeft--;
+            timeLeft--;
 
-        renderTimer();
+            renderTimer();
 
-        if (timeLeft <= 0) {
+            if (timeLeft <= 0) {
 
-            clearInterval(timerId);
+                clearInterval(timerId);
 
-            nextQuestion();
-        }
+                nextQuestion();
 
-    }, 1000);
+            }
+
+        }, 1000);
 }
 
 
+/* =========================================================
+   ТАЙМЕР — ВИД
+========================================================= */
+
 function renderTimer() {
 
-    timer.textContent = timeLeft;
+    timer.textContent =
+        timeLeft;
+
+    timer.classList.remove(
+        "warning",
+        "danger"
+    );
+
+    if (timeLeft <= 5) {
+
+        timer.classList.add(
+            "danger"
+        );
+
+    }
+
+    else if (timeLeft <= 10) {
+
+        timer.classList.add(
+            "warning"
+        );
+
+    }
 }
 
 
@@ -1452,15 +2735,34 @@ function nextQuestion() {
 
     currentQuestion++;
 
-    const round = rounds[currentRound];
+    const round =
+        rounds[currentRound];
 
-    if (currentQuestion >= round.data.length) {
+
+    if (
+        currentRound === 1 &&
+        currentQuestion === 5
+    ) {
+
+        showNotTransition();
+
+        return;
+    }
+
+
+    if (
+        currentQuestion >=
+        round.data.length
+    ) {
 
         startSubmit();
 
-    } else {
+    }
+
+    else {
 
         showQuestion();
+
     }
 }
 
@@ -1475,37 +2777,47 @@ function startSubmit() {
     clearInterval(submitId);
 
     paused = false;
+
     updatePause();
 
     showScreen(submitScreen);
 
-    pauseBtn.style.display = "block";
+    pauseBtn.style.display =
+        "block";
 
-    let submitTime = 15;
+    let submitTime = 25;
 
-    submitTimer.textContent = submitTime;
+    submitTimer.textContent =
+        submitTime;
 
-    submitId = setInterval(() => {
 
-        if (paused) return;
+    submitId =
+        setInterval(() => {
 
-        submitTime--;
+            if (paused) {
+                return;
+            }
 
-        submitTimer.textContent = submitTime;
+            submitTime--;
 
-        if (submitTime <= 0) {
+            submitTimer.textContent =
+                submitTime;
 
-            clearInterval(submitId);
 
-            startReview();
-        }
+            if (submitTime <= 0) {
 
-    }, 1000);
+                clearInterval(submitId);
+
+                startReview();
+
+            }
+
+        }, 1000);
 }
 
 
 /* =========================================================
-   РАЗБОР
+   REVIEW
 ========================================================= */
 
 function startReview() {
@@ -1515,7 +2827,8 @@ function startReview() {
 
     reviewIndex = 0;
 
-    pauseBtn.style.display = "none";
+    pauseBtn.style.display =
+        "none";
 
     showScreen(reviewScreen);
 
@@ -1525,14 +2838,18 @@ function startReview() {
 
 function showReview() {
 
-    const round = rounds[currentRound];
+    const round =
+        rounds[currentRound];
 
-    const q = round.data[reviewIndex];
+    const q =
+        round.data[reviewIndex];
+
 
     reviewCounter.innerHTML =
         `ВОПРОС ${reviewIndex + 1} / ${round.data.length}`;
 
-    reviewQuestion.innerHTML = q.q;
+    reviewQuestion.innerHTML =
+        q.q;
 
     reviewAnswer.innerHTML =
         `✅ ${q.answer}`;
@@ -1540,47 +2857,74 @@ function showReview() {
     reviewComment.innerHTML =
         q.comment || "";
 
+
     if (q.photo) {
 
-        reviewPhoto.src = q.photo;
+        reviewPhoto.src =
+            q.photo;
 
-        reviewPhotoWrap.style.display = "block";
+        reviewPhotoWrap.style.display =
+            "block";
 
-        reviewPhoto.onerror = function() {
-            reviewPhotoWrap.style.display = "none";
-        };
+        reviewPhoto.onerror =
+            function() {
 
-    } else {
+                reviewPhotoWrap.style.display =
+                    "none";
 
-        reviewPhotoWrap.style.display = "none";
+            };
+
+    }
+
+    else {
+
+        reviewPhotoWrap.style.display =
+            "none";
+
     }
 }
 
 
 /* =========================================================
-   СЛЕДУЮЩИЙ ОТВЕТ
+   СЛЕДУЮЩИЙ REVIEW
 ========================================================= */
 
 function nextReview() {
 
     reviewIndex++;
 
-    const round = rounds[currentRound];
+    const round =
+        rounds[currentRound];
 
-    if (reviewIndex >= round.data.length) {
 
-        if (currentRound < rounds.length - 1) {
+    if (
+        reviewIndex >=
+        round.data.length
+    ) {
 
-            startRound(currentRound + 1);
+        if (
+            currentRound <
+            rounds.length - 1
+        ) {
 
-        } else {
+            startRound(
+                currentRound + 1
+            );
 
-            showFinish();
         }
 
-    } else {
+        else {
+
+            showFinish();
+
+        }
+
+    }
+
+    else {
 
         showReview();
+
     }
 }
 
@@ -1594,7 +2938,8 @@ function showFinish() {
     clearInterval(timerId);
     clearInterval(submitId);
 
-    pauseBtn.style.display = "none";
+    pauseBtn.style.display =
+        "none";
 
     showScreen(finishScreen);
 }
@@ -1610,9 +2955,14 @@ function togglePause() {
         questionScreen.classList.contains("active") ||
         submitScreen.classList.contains("active");
 
-    if (!activeScreen) return;
 
-    paused = !paused;
+    if (!activeScreen) {
+        return;
+    }
+
+
+    paused =
+        !paused;
 
     updatePause();
 }
@@ -1620,42 +2970,33 @@ function togglePause() {
 
 function updatePause() {
 
-    if (paused) {
+    pauseOverlay.classList.remove(
+        "active"
+    );
 
-        pauseOverlay.classList.add("active");
-
-        pauseBtn.textContent = "▶";
-
-    } else {
-
-        pauseOverlay.classList.remove("active");
-
-        pauseBtn.textContent = "⏸";
-    }
+    pauseBtn.textContent =
+        paused ? "▶" : "⏸";
 }
 
 
 /* =========================================================
-   SPACE = ПАУЗА
+   ПРОБЕЛ
 ========================================================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (event.code === "Space") {
-
-        const activeScreen =
-            questionScreen.classList.contains("active") ||
-            submitScreen.classList.contains("active");
-
-        if (activeScreen) {
+        if (event.code === "Space") {
 
             event.preventDefault();
 
             togglePause();
-        }
-    }
 
-});
+        }
+
+    }
+);
 
 </script>
 
