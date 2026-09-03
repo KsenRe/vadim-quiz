@@ -1274,6 +1274,35 @@ button {
 
     border-radius: 20px;
 }
+    /* КОМПАКТНЫЙ ВОПРОС В ПРАВИЛЬНОМ ОТВЕТЕ */
+#reviewQuestion {
+    font-size: clamp(26px, 2.5vw, 38px) !important;
+    padding: 14px 25px !important;
+    margin-bottom: 15px !important;
+}
+
+/* БОЛЬШОЕ ФОТО */
+#reviewPhotoWrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 10px auto 20px !important;
+}
+
+#reviewPhoto {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    border-radius: 20px;
+}
+
+/* ОТВЕТ ПОД ФОТО */
+#reviewAnswer {
+    font-size: 24px !important;
+    margin: 10px auto 20px !important;
+}
 </style>
 </head>
 
@@ -1656,25 +1685,25 @@ button {
             </div>
 
             <div
-                class="question"
-                id="reviewQuestion">
-            </div>
+    class="question"
+    id="reviewQuestion">
+</div>
 
-            <div
-                class="review-answer"
-                id="reviewAnswer">
-            </div>
+<div
+    class="photo-wrap"
+    id="reviewPhotoWrap">
 
-            <div
-                class="photo-wrap"
-                id="reviewPhotoWrap">
+    <img
+        id="reviewPhoto"
+        alt=""
+    >
 
-                <img
-                    id="reviewPhoto"
-                    alt=""
-                >
+</div>
 
-            </div>
+<div
+    class="review-answer"
+    id="reviewAnswer">
+</div>
 
             <div
                 class="review-comment"
