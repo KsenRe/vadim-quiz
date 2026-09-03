@@ -1253,26 +1253,24 @@ button {
         padding: 50px 25px;
     }
 }
-#reviewPhotoWrap {
-    width: 100% !important;
-    height: auto !important;
-    margin: 25px auto !important;
+/* ФОТО В ЭКРАНЕ ПРАВИЛЬНОГО ОТВЕТА */
+.photo-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 25px auto;
 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#reviewPhoto {
-    display: block !important;
+.photo-wrap img {
+    display: block;
 
-    width: 80% !important;
-    height: auto !important;
+    width: 100%;
+    height: auto;
 
-    max-width: 900px !important;
-    max-height: none !important;
-
-    margin: 0 auto !important;
+    max-width: 100%;
 
     border-radius: 20px;
 }
@@ -2931,7 +2929,7 @@ function showReview() {
             q.photo;
 
         reviewPhotoWrap.style.display =
-            "flex";
+            "block";
 
         reviewPhoto.onerror =
             function() {
