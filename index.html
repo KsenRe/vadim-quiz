@@ -2923,13 +2923,13 @@ function showReview() {
         q.comment || "";
 
 
-    if (q.photo) {
+    if (q.reviewPhoto || q.photo) {
 
-        reviewPhoto.src =
-            q.photo;
+    reviewPhoto.src =
+        q.reviewPhoto || q.photo;
 
-        reviewPhotoWrap.style.display =
-            "flex";
+    reviewPhotoWrap.style.display =
+        "block";
 
         reviewPhoto.onerror =
             function() {
