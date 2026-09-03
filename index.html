@@ -804,21 +804,30 @@ button {
 
 .question-photo-wrap {
     width: 100%;
-    height: 600px;
+    height: auto;
+    min-height: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+
+    overflow: visible;
     border-radius: 25px;
     box-sizing: border-box;
 }
-    .question-photo-wrap img {
-    max-width: 100%;
-    max-height: 100%;
+
+.question-photo-wrap img {
+    display: block;
+
     width: auto;
     height: auto;
+
+    max-width: 100%;
+    max-height: 75vh;
+
     object-fit: contain;
-    display: block;
+    object-position: center;
+
     border-radius: 25px;
     box-shadow: 0 18px 45px rgba(0,0,0,.35);
 }
