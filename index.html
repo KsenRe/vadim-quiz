@@ -2926,18 +2926,22 @@ function showReview() {
     if (q.reviewPhoto || q.photo) {
 
     reviewPhoto.src =
-        q.reviewPhoto || q.photo;
+        q.reviewPhoto
+            ? q.reviewPhoto
+            : q.photo;
 
     reviewPhotoWrap.style.display =
         "block";
 
-        reviewPhoto.onerror =
-            function() {
+    reviewPhoto.onerror =
+        function() {
 
-                reviewPhotoWrap.style.display =
-                    "none";
+            alert(
+                "НЕ НАЙДЕНО ФОТО: " +
+                reviewPhoto.src
+            );
 
-            };
+}
 
     }
 
