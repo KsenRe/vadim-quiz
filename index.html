@@ -1253,7 +1253,30 @@ button {
         padding: 50px 25px;
     }
 }
+#reviewPhotoWrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 600px !important;
+    margin: 25px 0 !important;
 
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+}
+
+#reviewPhoto {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: contain !important;
+
+    box-sizing: border-box !important;
+    border-radius: 20px;
+}
 </style>
 </head>
 
@@ -2909,7 +2932,7 @@ function showReview() {
             q.photo;
 
         reviewPhotoWrap.style.display =
-            "block";
+            "flex";
 
         reviewPhoto.onerror =
             function() {
